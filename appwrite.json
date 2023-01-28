@@ -1,0 +1,21 @@
+{
+    "projectId": "63ac9d5112f3f07b7bb2",
+    "projectName": "Todoapp",
+    "functions": [
+        {
+            "$id": "63d2cb67bd7fd6e5e7f1",
+            "name": "testFunction",
+            "runtime": "dart-2.17",
+            "path": "functions/testFunction",
+            "entrypoint": "lib/main.dart",
+            "ignore": [
+                ".packages",
+                ".dart_tool"
+            ],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        }
+    ]
+}
