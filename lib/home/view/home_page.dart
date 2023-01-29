@@ -2,6 +2,7 @@ import 'package:appwrite/models.dart' as model;
 import 'package:flutter/material.dart';
 import 'package:todoapp/add_todo/add_todo.dart';
 import 'package:todoapp/helper/database_helper.dart';
+import 'package:todoapp/login/login.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -22,7 +23,23 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Homepage')),
+      appBar: AppBar(
+        title: const Text('Homepage'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginPage(),
+                ),
+                (route) => false,
+              );
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
+      ),
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator(),

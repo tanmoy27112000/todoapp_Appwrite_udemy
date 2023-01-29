@@ -59,16 +59,32 @@ class AuthHelper {
     }
   }
 
-  void loginWithNumber() {
+  Future<String> loginWithNumber(String s) async {
     try {
-      final token = account.createPhoneSession(
+      final token = await account.createPhoneSession(
         userId: ID.unique(),
-        phone: '+917031932380',
+        phone: s,
       );
+      return token.userId;
 
       //verify token
 
     } on AppwriteException {
+      rethrow;
+    }
+  }
+
+  Future<model.Session> verifyOTP({
+    required String userId,
+    required String otp,
+  }) async {
+    try {
+      final session = await account.updatePhoneSession(
+        userId: userId,
+        secret: otp,
+      );
+      return session;
+    } catch (e) {
       rethrow;
     }
   }

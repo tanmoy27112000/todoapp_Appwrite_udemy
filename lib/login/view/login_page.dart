@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:todoapp/app/view/app.dart';
 import 'package:todoapp/helper/auth_helper.dart';
 import 'package:todoapp/home/home.dart';
+import 'package:todoapp/login/view/phone_login_page.dart';
 import 'package:todoapp/signup/signup.dart';
 import 'package:todoapp/util/regex.dart';
 
@@ -126,24 +127,44 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                ),
-                onPressed: () {
-                  AuthHelper().loginAnnonymously().then((value) {
-                    prefs.setSessionId(value.$id);
 
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Homepage(),
-                      ),
-                      (route) => false,
-                    );
-                  });
-                },
-                child: const Text('Login annonymously'),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                    ),
+                    onPressed: () {
+                      AuthHelper().loginAnnonymously().then((value) {
+                        prefs.setSessionId(value.$id);
+
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Homepage(),
+                          ),
+                          (route) => false,
+                        );
+                      });
+                    },
+                    child: const Text('Login annonymously'),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PhoneLoginPage(),
+                        ),
+                      );
+                    },
+                    child: const Text('Login with phone'),
+                  ),
+                ],
               ),
               const SizedBox(height: 16),
               RichText(
